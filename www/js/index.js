@@ -35,17 +35,13 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
         dao.databaseStart();
+        comms.checkConnection();
+        data.updateEvents();
+        //data.test();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        /*var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);*/
     },
 
     debug: function(txt){
