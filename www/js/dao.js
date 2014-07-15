@@ -41,15 +41,21 @@ var dao = {
     createEvent: function(tx, eventJson) {
         dao.insertJSON(tx, 'EVENT', eventJson);
 
-        /*for (i=0; i<eventJson.tracks.length;i++) {
+
+
+        for (var i=0; i<eventJson.tracks.length;i++) {
             dao.insertJSON(tx, 'TRACK', eventJson.tracks[i]);
         }
-        for (i=0; i<eventJson.speakers.length;i++) {
+
+
+        for (var i=0; i<eventJson.speakers.length;i++) {
             dao.insertJSON(tx, 'SPEAKER', eventJson.speakers[i]);
         }
-        for (i=0; i<eventJson.talks.length;i++) {
+
+
+        for (var i=0; i<eventJson.talks.length;i++) {
             dao.insertJSON(tx, 'TALK', eventJson.talks[i]);
-        }*/
+        }
 
     },
 
@@ -87,16 +93,38 @@ var dao = {
         dao.listEvents(function(list){
             var html = "<ul>";
             for (i = 0; i < list.length; i++){
-                html += "<li>"+list[i].name+"</li>"
+                html += "<li onclick='dao.test2(" + list[i].id+ ")'>"+list[i].name+"</li>"
             }
             html +="</ul>";
             document.getElementById("event-list").innerHTML = html;
         });
     },
 
+    test2: function(id) {
+        dao.listTalks(id, function(list){
+            var txt = "";
+            for (var i = 0; i < list.length; i++){
+                txt += ' '  + list[i].name + '-' + list[i].event_id;
+            }
+            alert(txt);
+        })
+    },
+
     listEvents: function(querySuccess){
         dao.db.readTransaction(function (t) {
             t.executeSql('SELECT * FROM EVENT',
+                [],
+                function(tx, results){
+                    dao.querySuccess(results, querySuccess);
+                },
+                dao.errorCB
+            );
+        });
+    },
+
+    listTalks: function(eventId, querySuccess){
+        dao.db.readTransaction(function (t) {
+            t.executeSql('SELECT * FROM TALK WHERE EVENT_ID="'+eventId+'"',
                 [],
                 function(tx, results){
                     dao.querySuccess(results, querySuccess);

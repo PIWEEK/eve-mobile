@@ -4,8 +4,8 @@ var sample = JSON.parse('\
     { \
       "id": 1000, \
       "name": "Event 1000", \
-      "startDate": "2014-07-15T10:47:53+0000", \
-      "endDate": "2014-07-15T10:47:53+0000", \
+      "startDate": "2014-07-15T12:02:06+0000", \
+      "endDate": "2014-07-15T12:02:06+0000", \
       "hashtag": "#event1000", \
       "logo": "http:\/\/app.com\/1000.png", \
       "tags": "groovy, cordova, html5", \
@@ -30,40 +30,40 @@ var sample = JSON.parse('\
         { \
           "id": 3000, \
           "event_id": 1000, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3000", \
+          "twitter": "john3000", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3000.png" \
         }, \
         { \
           "id": 3001, \
           "event_id": 1000, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3001", \
+          "twitter": "john3001", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3001.png" \
         }, \
         { \
           "id": 3002, \
           "event_id": 1000, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3002", \
+          "twitter": "john3002", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3002.png" \
         }, \
         { \
           "id": 3003, \
           "event_id": 1000, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3003", \
+          "twitter": "john3003", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3003.png" \
         }, \
         { \
           "id": 3004, \
           "event_id": 1000, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3004", \
+          "twitter": "john3004", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3004.png" \
         } \
@@ -73,8 +73,8 @@ var sample = JSON.parse('\
           "id": 4000, \
           "event_id": 1000, \
           "name": "Talk 4000", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2000, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4000", \
@@ -87,8 +87,8 @@ var sample = JSON.parse('\
           "id": 4001, \
           "event_id": 1000, \
           "name": "Talk 4001", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2000, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4001", \
@@ -101,8 +101,8 @@ var sample = JSON.parse('\
           "id": 4002, \
           "event_id": 1000, \
           "name": "Talk 4002", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2000, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4002", \
@@ -115,8 +115,8 @@ var sample = JSON.parse('\
           "id": 4003, \
           "event_id": 1000, \
           "name": "Talk 4003", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2000, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4003", \
@@ -129,8 +129,8 @@ var sample = JSON.parse('\
           "id": 4004, \
           "event_id": 1000, \
           "name": "Talk 4004", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2000, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4004", \
@@ -144,8 +144,8 @@ var sample = JSON.parse('\
     { \
       "id": 1001, \
       "name": "Event 1001", \
-      "startDate": "2014-07-15T10:47:53+0000", \
-      "endDate": "2014-07-15T10:47:53+0000", \
+      "startDate": "2014-07-15T12:02:06+0000", \
+      "endDate": "2014-07-15T12:02:06+0000", \
       "hashtag": "#event1001", \
       "logo": "http:\/\/app.com\/1001.png", \
       "tags": "groovy, cordova, html5", \
@@ -170,40 +170,40 @@ var sample = JSON.parse('\
         { \
           "id": 3005, \
           "event_id": 1001, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3005", \
+          "twitter": "john3005", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3005.png" \
         }, \
         { \
           "id": 3006, \
           "event_id": 1001, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3006", \
+          "twitter": "john3006", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3006.png" \
         }, \
         { \
           "id": 3007, \
           "event_id": 1001, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3007", \
+          "twitter": "john3007", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3007.png" \
         }, \
         { \
           "id": 3008, \
           "event_id": 1001, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3008", \
+          "twitter": "john3008", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3008.png" \
         }, \
         { \
           "id": 3009, \
           "event_id": 1001, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3009", \
+          "twitter": "john3009", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3009.png" \
         } \
@@ -213,8 +213,8 @@ var sample = JSON.parse('\
           "id": 4005, \
           "event_id": 1001, \
           "name": "Talk 4005", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2003, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4005", \
@@ -227,8 +227,8 @@ var sample = JSON.parse('\
           "id": 4006, \
           "event_id": 1001, \
           "name": "Talk 4006", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2003, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4006", \
@@ -241,8 +241,8 @@ var sample = JSON.parse('\
           "id": 4007, \
           "event_id": 1001, \
           "name": "Talk 4007", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2003, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4007", \
@@ -255,8 +255,8 @@ var sample = JSON.parse('\
           "id": 4008, \
           "event_id": 1001, \
           "name": "Talk 4008", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2003, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4008", \
@@ -269,8 +269,8 @@ var sample = JSON.parse('\
           "id": 4009, \
           "event_id": 1001, \
           "name": "Talk 4009", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2003, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4009", \
@@ -284,8 +284,8 @@ var sample = JSON.parse('\
     { \
       "id": 1002, \
       "name": "Event 1002", \
-      "startDate": "2014-07-15T10:47:53+0000", \
-      "endDate": "2014-07-15T10:47:53+0000", \
+      "startDate": "2014-07-15T12:02:06+0000", \
+      "endDate": "2014-07-15T12:02:06+0000", \
       "hashtag": "#event1002", \
       "logo": "http:\/\/app.com\/1002.png", \
       "tags": "groovy, cordova, html5", \
@@ -310,40 +310,40 @@ var sample = JSON.parse('\
         { \
           "id": 3010, \
           "event_id": 1002, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3010", \
+          "twitter": "john3010", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3010.png" \
         }, \
         { \
           "id": 3011, \
           "event_id": 1002, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3011", \
+          "twitter": "john3011", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3011.png" \
         }, \
         { \
           "id": 3012, \
           "event_id": 1002, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3012", \
+          "twitter": "john3012", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3012.png" \
         }, \
         { \
           "id": 3013, \
           "event_id": 1002, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3013", \
+          "twitter": "john3013", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3013.png" \
         }, \
         { \
           "id": 3014, \
           "event_id": 1002, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3014", \
+          "twitter": "john3014", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3014.png" \
         } \
@@ -353,8 +353,8 @@ var sample = JSON.parse('\
           "id": 4010, \
           "event_id": 1002, \
           "name": "Talk 4010", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2006, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4010", \
@@ -367,8 +367,8 @@ var sample = JSON.parse('\
           "id": 4011, \
           "event_id": 1002, \
           "name": "Talk 4011", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2006, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4011", \
@@ -381,8 +381,8 @@ var sample = JSON.parse('\
           "id": 4012, \
           "event_id": 1002, \
           "name": "Talk 4012", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2006, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4012", \
@@ -395,8 +395,8 @@ var sample = JSON.parse('\
           "id": 4013, \
           "event_id": 1002, \
           "name": "Talk 4013", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2006, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4013", \
@@ -409,8 +409,8 @@ var sample = JSON.parse('\
           "id": 4014, \
           "event_id": 1002, \
           "name": "Talk 4014", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2006, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4014", \
@@ -424,8 +424,8 @@ var sample = JSON.parse('\
     { \
       "id": 1003, \
       "name": "Event 1003", \
-      "startDate": "2014-07-15T10:47:53+0000", \
-      "endDate": "2014-07-15T10:47:53+0000", \
+      "startDate": "2014-07-15T12:02:06+0000", \
+      "endDate": "2014-07-15T12:02:06+0000", \
       "hashtag": "#event1003", \
       "logo": "http:\/\/app.com\/1003.png", \
       "tags": "groovy, cordova, html5", \
@@ -450,40 +450,40 @@ var sample = JSON.parse('\
         { \
           "id": 3015, \
           "event_id": 1003, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3015", \
+          "twitter": "john3015", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3015.png" \
         }, \
         { \
           "id": 3016, \
           "event_id": 1003, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3016", \
+          "twitter": "john3016", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3016.png" \
         }, \
         { \
           "id": 3017, \
           "event_id": 1003, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3017", \
+          "twitter": "john3017", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3017.png" \
         }, \
         { \
           "id": 3018, \
           "event_id": 1003, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3018", \
+          "twitter": "john3018", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3018.png" \
         }, \
         { \
           "id": 3019, \
           "event_id": 1003, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3019", \
+          "twitter": "john3019", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3019.png" \
         } \
@@ -493,8 +493,8 @@ var sample = JSON.parse('\
           "id": 4015, \
           "event_id": 1003, \
           "name": "Talk 4015", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2009, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4015", \
@@ -507,8 +507,8 @@ var sample = JSON.parse('\
           "id": 4016, \
           "event_id": 1003, \
           "name": "Talk 4016", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2009, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4016", \
@@ -521,8 +521,8 @@ var sample = JSON.parse('\
           "id": 4017, \
           "event_id": 1003, \
           "name": "Talk 4017", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2009, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4017", \
@@ -535,8 +535,8 @@ var sample = JSON.parse('\
           "id": 4018, \
           "event_id": 1003, \
           "name": "Talk 4018", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2009, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4018", \
@@ -549,8 +549,8 @@ var sample = JSON.parse('\
           "id": 4019, \
           "event_id": 1003, \
           "name": "Talk 4019", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2009, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4019", \
@@ -564,8 +564,8 @@ var sample = JSON.parse('\
     { \
       "id": 1004, \
       "name": "Event 1004", \
-      "startDate": "2014-07-15T10:47:53+0000", \
-      "endDate": "2014-07-15T10:47:53+0000", \
+      "startDate": "2014-07-15T12:02:06+0000", \
+      "endDate": "2014-07-15T12:02:06+0000", \
       "hashtag": "#event1004", \
       "logo": "http:\/\/app.com\/1004.png", \
       "tags": "groovy, cordova, html5", \
@@ -590,40 +590,40 @@ var sample = JSON.parse('\
         { \
           "id": 3020, \
           "event_id": 1004, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3020", \
+          "twitter": "john3020", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3020.png" \
         }, \
         { \
           "id": 3021, \
           "event_id": 1004, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3021", \
+          "twitter": "john3021", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3021.png" \
         }, \
         { \
           "id": 3022, \
           "event_id": 1004, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3022", \
+          "twitter": "john3022", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3022.png" \
         }, \
         { \
           "id": 3023, \
           "event_id": 1004, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3023", \
+          "twitter": "john3023", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3023.png" \
         }, \
         { \
           "id": 3024, \
           "event_id": 1004, \
-          "name": "John $speakerId", \
-          "twitter": "@john$speakerId", \
+          "name": "John 3024", \
+          "twitter": "john3024", \
           "bio": "asdf asdf asdf", \
           "photo": "http:\/\/app.com\/3024.png" \
         } \
@@ -633,8 +633,8 @@ var sample = JSON.parse('\
           "id": 4020, \
           "event_id": 1004, \
           "name": "Talk 4020", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2012, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4020", \
@@ -647,8 +647,8 @@ var sample = JSON.parse('\
           "id": 4021, \
           "event_id": 1004, \
           "name": "Talk 4021", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2012, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4021", \
@@ -661,8 +661,8 @@ var sample = JSON.parse('\
           "id": 4022, \
           "event_id": 1004, \
           "name": "Talk 4022", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2012, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4022", \
@@ -675,8 +675,8 @@ var sample = JSON.parse('\
           "id": 4023, \
           "event_id": 1004, \
           "name": "Talk 4023", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2012, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4023", \
@@ -689,8 +689,8 @@ var sample = JSON.parse('\
           "id": 4024, \
           "event_id": 1004, \
           "name": "Talk 4024", \
-          "startDate": "2014-07-15T10:47:53+0000", \
-          "endDate": "2014-07-15T10:47:53+0000", \
+          "startDate": "2014-07-15T12:02:06+0000", \
+          "endDate": "2014-07-15T12:02:06+0000", \
           "track_id": 2012, \
           "description": "asdf asdf asdf", \
           "hashtag": "#talk4024", \
