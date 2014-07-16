@@ -10,6 +10,7 @@ var gui = {
     },
 
     drawEvents: function(list){
+        gui.showContent("#event-list");
         var grid = document.getElementsByClassName("home-grid")[0];
         grid.innerHTML = '<h1 class="full">Next events</h1>';
 
@@ -75,6 +76,22 @@ var gui = {
                 nextElement.className = "content";
                 gui.currentContent = nextContent;
             }
+    },
+
+    findEvents: function(text){
+        var list = [];
+        text = text.toLowerCase();
+        for (var i=0; i<dao.eventList.length;i++){
+            var name = dao.eventList[i].name.toLowerCase();
+            if (name.indexOf(text) > -1){
+                list.push(dao.eventList[i]);
+            }
+        }
+        gui.drawEvents(list);
+    },
+
+    clearSearch: function(){
+        $(".search").val("");
     }
 
 };

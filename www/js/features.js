@@ -19,6 +19,11 @@ jQuery(document).ready(function() {
 
 
     $(".eve-logo").click(function(){
-        gui.showContent("#event-list");
+        gui.clearSearch();
+        data.updateEvents();
     });
+
+    $(".search").keyup(function(){
+        gui.findEvents($(this).val());
+    })
 });

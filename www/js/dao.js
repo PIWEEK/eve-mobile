@@ -143,7 +143,10 @@ var dao = {
             t.executeSql('SELECT * FROM EVENT',
                 [],
                 function(tx, results){
-                    dao.querySuccess(results, querySuccess);
+                    dao.querySuccess(results, function(list){
+                        dao.eventList = list;
+                        querySuccess(list);
+                    });
                 },
                 dao.errorCB
             );

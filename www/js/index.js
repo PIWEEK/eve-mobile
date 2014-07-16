@@ -47,5 +47,11 @@ var app = {
 
     debug: function(txt){
         alert(txt);
+    },
+
+    desktop: function(){
+        var events = [{id:1, name:'aa', startDate:'01/01/2015'},{id:2, name:'bb', startDate:'01/01/2015'},{id:3, name:'aa', startDate:'01/01/2015'},{id:4, name:'bb', startDate:'01/01/2015'},{id:5, name:'aa', startDate:'01/01/2015'},{id:6, name:'bb', startDate:'01/01/2015'}];
+        dao.eventList = events;
+        gui.drawEvents(events);
     }
 };
