@@ -53,17 +53,14 @@ var data = {
         }
     },
 
-    showEventInfo: function(eventId){
+    selectEvent: function(eventId){
         //Check if we need to update the event data
         dao.getEvent(
             eventId,
             function(list){
-                gui.drawEventInfo(list[0]);
+                gui.selectEvent(list[0]);
             }
         );
-
-
-
     }
 
 

@@ -9,6 +9,12 @@ var gui = {
         $(selector).removeClass("hide");
     },
 
+    showEventContent: function(selector){
+        gui.hideMenu();
+        $(".event-content-data").addClass("hide");
+        $(selector).removeClass("hide");
+    },
+
     drawEvents: function(list){
         gui.showContent("#event-list");
         var grid = document.getElementsByClassName("home-grid")[0];
@@ -22,7 +28,7 @@ var gui = {
             var div = document.createElement('div');
             div.dataset.eventId = list[i].id;
             div.addEventListener("click", function(){
-                data.showEventInfo(this.dataset.eventId);
+                data.selectEvent(this.dataset.eventId);
             });
             div.className = 'event-home inline-block ' + sizeClass;
 
@@ -35,10 +41,39 @@ var gui = {
 
     },
 
-    drawEventInfo: function(event){
+    selectEvent: function(event){
+        gui.event = event;
         gui.showContent("#event-info");
-        $("#event-name").html(event.name);
-        $(".event-img").find("img").attr("src", event.logo);
+        gui.drawEventInfo();
+    },
+
+    drawEventInfo: function(){
+        gui.showEventContent(".event-content-data-info");
+
+        $(".event-nav-link").removeClass("current");
+        $(".event-nav-link-info").addClass("current");
+
+
+        $("#event-name").html(gui.event.name);
+        $(".event-img").find("img").attr("src", gui.event.logo);
+    },
+
+    drawEventTalks: function(){
+        gui.showEventContent(".event-content-data-talks");
+        $(".event-nav-link").removeClass("current");
+        $(".event-nav-link-talks").addClass("current");
+    },
+
+    drawEventSpeakers: function(){
+        gui.showEventContent(".event-content-data-speakers");
+        $(".event-nav-link").removeClass("current");
+        $(".event-nav-link-speakers").addClass("current");
+    },
+
+    drawEventLocation: function(){
+        gui.showEventContent(".event-content-data-location");
+        $(".event-nav-link").removeClass("current");
+        $(".event-nav-link-location").addClass("current");
     },
 
     drawTest: function(list){
@@ -92,6 +127,18 @@ var gui = {
 
     clearSearch: function(){
         $(".search").val("");
+    },
+
+    hideMenu: function(){
+        $(".overlay").remove();
+        $('nav.event-mobile').hide();
+    },
+
+    showMenu: function(){
+        var overlay = $('<div class="overlay"/>');
+        $("body").append(overlay);
+        overlay.on("click", gui.hideMenu);
+        $('nav.event-mobile').show();
     }
 
 };
