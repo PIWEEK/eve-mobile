@@ -4,6 +4,10 @@ var gui = {
     init: function(){
 
     },
+    showContent: function(selector){
+        $(".content").addClass("hide");
+        $(selector).removeClass("hide");
+    },
 
     drawEvents: function(list){
         var grid = document.getElementsByClassName("home-grid")[0];
@@ -22,7 +26,7 @@ var gui = {
             div.className = 'event-home inline-block ' + sizeClass;
 
 
-            div.innerHTML = '<div class="event-home-info"><a href="###">'+list[i].name+'</a><span class="event-home-date">'+list[i].startDate+'</span></div><a href="#"><img src="images/2x1.png" border="0"/></a>';
+            div.innerHTML = '<div class="event-home-info"><a href="###">'+list[i].name+'</a><span class="event-home-date">'+list[i].startDate+'</span></div><a href="#"><img src="'+list[i].logo+'" border="0"/></a>';
 
 
             grid.appendChild (div);
@@ -31,9 +35,9 @@ var gui = {
     },
 
     drawEventInfo: function(event){
-        document.getElementById("event-list").className = "content hide";
-        document.getElementById("event-info").className = "content";
-        //document.getElementById("event-info-title").innerHTML = "INFO "+event.name;
+        gui.showContent("#event-info");
+        $("#event-name").html(event.name);
+        $(".event-img").find("img").attr("src", event.logo);
     },
 
     drawTest: function(list){

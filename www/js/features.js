@@ -16,4 +16,9 @@ jQuery(document).ready(function() {
     $('#event-nav-icon').click(showMenu);
 
     $('.icon-eve').click(hideMenu);
+
+
+    $(".eve-logo").click(function(){
+        gui.showContent("#event-list");
+    });
 });
