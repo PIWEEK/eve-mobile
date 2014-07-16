@@ -7,13 +7,18 @@ var data = {
 
     updateEvents: function(){
         if (comms.online) {
-            alert("Starting on online mode");
+            //alert("Starting on online mode");
             //TODO: Ask JSON to server
-            dao.updateDatabaseEventsWithJSON(eventsListSample,
-                function(){
-                    dao.listEvents(gui.drawEvents);
-                }
-            );
+            comms.getEventList(function(text){
+                var eventList = JSON.parse(text);
+                dao.updateDatabaseEventsWithJSON(eventList,
+                    function(){
+                        dao.listEvents(gui.drawEvents);
+                    }
+                );
+
+
+            });
         } else {
             dao.listEvents(function(list){
                 if (list.length == 0) {
@@ -26,7 +31,7 @@ var data = {
         }
     },
 
-    updateTalks: function(eventId){
+    updateEventData: function(eventId){
         if (comms.online) {
             //Check if we need to update the event data
             dao.getEvent(
@@ -46,6 +51,19 @@ var data = {
         } else {
             dao.listTalks(eventId, gui.drawTalks);
         }
+    },
+
+    showEventInfo: function(eventId){
+        //Check if we need to update the event data
+        dao.getEvent(
+            eventId,
+            function(list){
+                gui.drawEventInfo(list[0]);
+            }
+        );
+
+
+
     }
 
 

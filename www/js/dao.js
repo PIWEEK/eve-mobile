@@ -5,7 +5,7 @@ var dao = {
     },
 
     createTables: function(tx) {
-         //dao.execute(tx, 'DROP TABLE IF EXISTS EVENT');
+         dao.execute(tx, 'DROP TABLE IF EXISTS EVENT');
          //dao.execute(tx, 'DROP TABLE IF EXISTS TRACK');
          //dao.execute(tx, 'DROP TABLE IF EXISTS SPEAKER');
          //dao.execute(tx, 'DROP TABLE IF EXISTS TALK');
