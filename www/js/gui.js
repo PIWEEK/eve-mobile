@@ -17,27 +17,29 @@ var gui = {
 
     drawEvents: function(list){
         gui.showContent("#event-list");
-        var grid = document.getElementsByClassName("home-grid")[0];
-        grid.innerHTML = '<h1 class="full">Next events</h1>';
+        var grid = $(".home-grid");
+        grid.html('<h1 class="full">Next events</h1>');
+
 
         for (i = 0; i < list.length; i++){
             var sizeClass = "quarter";
             if (i==0) {
                 sizeClass = "half";
             }
-            var div = document.createElement('div');
-            div.dataset.eventId = list[i].id;
-            div.addEventListener("click", function(){
-                data.selectEvent(this.dataset.eventId);
+            var div = $('<div></div>');
+            div.data("eventId", list[i].id);
+            div.click(function(){
+                data.selectEvent($(this).data("eventId"));
             });
-            div.className = 'event-home inline-block ' + sizeClass;
+            div.addClass('event-home');
+            div.addClass('inline-block');
+            div.addClass(sizeClass);
 
 
-            div.innerHTML = '<div class="event-home-info"><a href="###">'+list[i].name+'</a><span class="event-home-date">'+list[i].startDate+'</span></div><a href="#"><img src="'+list[i].logo+'" border="0"/></a>';
-
-
-            grid.appendChild (div);
+            div.html('<div class="event-home-info"><a href="###">'+list[i].name+'</a><span class="event-home-date">'+list[i].startDate+'</span></div><a href="#"><img src="'+list[i].logo+'" border="0"/></a>');
+            grid.append (div);
         }
+
 
     },
 

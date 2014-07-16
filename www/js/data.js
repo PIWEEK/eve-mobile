@@ -54,13 +54,12 @@ var data = {
     },
 
     selectEvent: function(eventId){
-        //Check if we need to update the event data
-        dao.getEvent(
-            eventId,
-            function(list){
-                gui.selectEvent(list[0]);
+        for (var i=0; i<dao.eventList.length;i++){
+            if (eventId == dao.eventList[i].id) {
+                gui.selectEvent(dao.eventList[i]);
+                break;
             }
-        );
+        }
     }
 
 

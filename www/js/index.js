@@ -50,7 +50,8 @@ var app = {
     },
 
     desktop: function(){
-        var events = [{id:1, name:'aa', startDate:'01/01/2015'},{id:2, name:'bb', startDate:'01/01/2015'},{id:3, name:'aa', startDate:'01/01/2015'},{id:4, name:'bb', startDate:'01/01/2015'},{id:5, name:'aa', startDate:'01/01/2015'},{id:6, name:'bb', startDate:'01/01/2015'}];
+        alert("desktop fake");
+        var events = [{id:1, name:'Greach', startDate:'01/01/2015', logo:'http://engineering.ticketbis.com/img/greach.jpg'},{id:2, name:'Codemotion', startDate:'01/01/2015', logo:'http://www.good2know.it/wp-content/uploads/2012/03/codemotion.png'},{id:3, name:'UX Spain', startDate:'01/01/2015', logo:'http://www.effectivetalk.es/wp-content/uploads/2014/05/uxspain-2014.png'}];
         dao.eventList = events;
         gui.drawEvents(events);
     }
