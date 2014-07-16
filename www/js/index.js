@@ -34,9 +34,9 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        comms.checkConnection();
         gui.init();
         dao.databaseStart();
-        comms.checkConnection();
         data.updateEvents();
         //data.test();
     },
