@@ -33,6 +33,8 @@ var data = {
 
     updateEventData: function(eventId){
         if (comms.online) {
+            data.updating = true;
+            alert(data.updating);
             //Check if we need to update the event data
             dao.getEvent(
                 eventId,
@@ -41,15 +43,27 @@ var data = {
                     alert(event.lastUpdate +"-"+ event.currentUpdate);
                     if (event.lastUpdate != event.currentUpdate) {
                         //TODO: Ask JSON to server
-                        dao.updateDatabaseEventDataWithJSON(event, eventContentSample, function(){dao.listTalks(eventId, gui.drawTalks)});
+                        //dao.updateDatabaseEventDataWithJSON(event, eventContentSample, function(){dao.listTalks(eventId, gui.drawTalks)});
+
+                        comms.getEventData(
+                            eventId,
+                            function(text){
+                                var eventContent = JSON.parse(text);
+                                dao.updateDatabaseEventDataWithJSON(event, eventContent, function(){data.updating = false;});
+                            }
+                        );
+
+
+
                     } else {
-                        dao.listTalks(eventId, gui.drawTalks);
+                        //dao.listTalks(eventId, gui.drawTalks);
+                        data.updating = false;
                     }
                 }
             )
 
         } else {
-            dao.listTalks(eventId, gui.drawTalks);
+            //dao.listTalks(eventId, gui.drawTalks);
         }
     },
 
@@ -57,8 +71,17 @@ var data = {
         for (var i=0; i<dao.eventList.length;i++){
             if (eventId == dao.eventList[i].id) {
                 gui.selectEvent(dao.eventList[i]);
+                data.updateEventData(eventId);
                 break;
             }
+        }
+    },
+
+    showEventData: function(show){
+        if (data.updating) {
+            window.setTimeout(function(){data.showEventData(show)}, 200);
+        } else {
+            show()
         }
     }
 

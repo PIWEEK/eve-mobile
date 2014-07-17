@@ -34,5 +34,9 @@ var comms = {
 
     getEventList: function(success) {
         return comms.ajaxGet("http://10.8.1.11:8080/event", success);
+    },
+
+    getEventData: function(eventId, success) {
+        return comms.ajaxGet("http://10.8.1.11:8080/event"+eventId+"/complete", success);
     }
 };

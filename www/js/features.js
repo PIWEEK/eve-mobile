@@ -18,13 +18,11 @@ jQuery(document).ready(function() {
     })
 
     $(".event-nav-link-info").click(gui.drawEventInfo);
-    $(".event-nav-link-talks").click(gui.drawEventTalks);
-    $(".event-nav-link-speakers").click(gui.drawEventSpeakers);
-    $(".event-nav-link-location").click(gui.drawEventLocation);
+    $(".event-nav-link-talks").click(function(){data.showEventData(gui.drawEventTalks)});
+    $(".event-nav-link-speakers").click(function(){data.showEventData(gui.drawEventSpeakers)});
+    $(".event-nav-link-location").click(function(){data.showEventData(gui.drawEventLocation)});
 
-
-    var networkState = navigator.network;
-    if (networkState) {
+    if (typeof cordova !== 'undefined' ) {
         $.getScript("js/comms.js", function(){
             $.getScript("js/index.js", function(){
                 app.initialize();
@@ -33,8 +31,8 @@ jQuery(document).ready(function() {
     } else {
         $.getScript("js/comms-desktop.js", function(){
             $.getScript("js/index-desktop.js", function(){
-                //app.initialize();
-                app.desktop();
+                app.initialize();
+                //app.desktop();
             })
         })
     }
