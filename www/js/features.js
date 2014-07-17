@@ -60,11 +60,9 @@ jQuery(document).ready(function() {
         $.getScript("js/comms.js", function(){
             $.getScript("js/index.js", function(){
                 app.initialize();
-
-                $.rloader([{src:'css/style-mobile.css'}]);
-
                 $('#event-nav-icon').click(gui.showMenu);
                 $('.icon-eve').click(gui.hideMenu);
+                $.rloader([{src:'css/style-mobile.css'}]);
             })
         })
     } else {
