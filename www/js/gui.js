@@ -170,21 +170,30 @@ var gui = {
     },
 
     drawTalk: function(talk){
+        var date = gui.parseDate(talk.startDate);
 
-        if (talk.day != gui.day) {
-            $(".event-content-data-talks").append('<div class="talks-day-title"><h3>'+talk.day+'</h3></div>');
-            gui.day = talk.day;
+        if (date[0] != gui.day) {
+            gui.day = date[0];
+            $(".event-content-data-talks").append('<div class="talks-day-title"><h3>'+gui.day+'</h3></div>');
+
         }
 
         var div = $('<div></div>');
         var speaker = dao.getCachedSpeakerForTalk(talk.id);
         div.addClass("talks-row");
-        div.append('<div class="talks-row-hour">09:00h</div>');
+        div.append('<div class="talks-row-hour">'+date[1]+'h</div>');
         div.append('<div class="talks-row-content"><span class="talk-title">'+talk.name+'</span><span class="talk-speaker">'+speaker.name+'</span><span class="talk-location">'+talk.roomName+'</span></div>');
         div.append('<div class="talks-row-btn modalLink"><i class="icon-plus"></i></div>');
 
 
         $(".event-content-data-talks").append(div);
+    },
+
+    parseDate: function(stringDate){
+        //2014-01-01 09:00:00
+        var d = stringDate.split(" ");
+        d[1] = d[1].substring(0, 5);
+        return d;
     }
 
 };
