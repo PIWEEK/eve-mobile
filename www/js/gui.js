@@ -59,6 +59,9 @@ var gui = {
         $("#event-name").html(gui.event.name);
         $(".event-img").find("img").attr("src", gui.event.logo);
 
+
+        $(".event-text p").html(gui.event.description);
+
         $(".tagline").html("");
 
         data.showTags(gui.event.id, gui.event.tags);
