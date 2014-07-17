@@ -1,13 +1,5 @@
 // MENU RESPONSIVE
 jQuery(document).ready(function() {
-
-
-
-    $('#event-nav-icon').click(gui.showMenu);
-
-    $('.icon-eve').click(gui.hideMenu);
-
-
     $(".eve-logo").click(function(){
         gui.clearSearch();
         data.updateEvents();
@@ -68,6 +60,11 @@ jQuery(document).ready(function() {
         $.getScript("js/comms.js", function(){
             $.getScript("js/index.js", function(){
                 app.initialize();
+
+                $.rloader([{src:'css/style-mobile.css'}]);
+
+                $('#event-nav-icon').click(gui.showMenu);
+                $('.icon-eve').click(gui.hideMenu);
             })
         })
     } else {
@@ -75,8 +72,17 @@ jQuery(document).ready(function() {
             $.getScript("js/index-desktop.js", function(){
                 app.initialize();
                 //app.desktop();
+
+                $('#event-nav-icon').click(function() {
+                    $('nav.event-mobile').slideToggle("fast");
+                    $('body').toggleClass('translate-3d-menu');
+                });
+                $('.icon-eve').click(function() {
+                    $('nav.event-mobile').slideToggle("fast");
+                    $('body').removeClass('translate-3d-menu');
+                });
+
             })
         })
     }
-
 });
