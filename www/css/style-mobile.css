@@ -14,7 +14,12 @@
 
 .content .event-content nav.event-mobile {
   right: 0;
-  width: 40%;
+  width: 70%;
+}
+
+.content .event-content nav.talks-mobile {
+  left: 0;
+  width: 70%;
 }
 
 .tagline{

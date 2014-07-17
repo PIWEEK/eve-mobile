@@ -35,33 +35,13 @@ jQuery(document).ready(function() {
         close:'.closeBtn'               // id or class of close button
     });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     if (typeof cordova !== 'undefined' ) {
         $.getScript("js/comms.js", function(){
             $.getScript("js/index.js", function(){
                 app.initialize();
                 $('#event-nav-icon').click(gui.showMenu);
                 $('.icon-eve').click(gui.hideMenu);
+                $('#talks-nav-icon').click(gui.showTracksMenu);
                 $.rloader([{src:'css/style-mobile.css'}]);
             })
         })
@@ -79,6 +59,24 @@ jQuery(document).ready(function() {
                     $('nav.event-mobile').slideToggle("fast");
                     $('body').removeClass('translate-3d-menu');
                 });
+                $('#talks-nav-icon').click(function() {
+                    $('nav.talks-mobile').slideToggle("fast");
+                    $('body').toggleClass('translate-3d-menu-left');
+                });
+
+                gui.hideMenu = function(){
+                    if ($('nav.event-mobile').is(":visible")){
+                        $('nav.event-mobile').slideToggle("fast");
+                        $('body').toggleClass('translate-3d-menu');
+                    }
+
+                    if ($('nav.talks-mobile').is(":visible")){
+                        $('nav.talks-mobile').slideToggle("fast");
+                        $('body').toggleClass('translate-3d-menu-left');
+                    }
+                }
+
+
 
             })
         })

@@ -50,6 +50,7 @@ var gui = {
     },
 
     drawEventInfo: function(){
+        $(".icon-bubbles").hide();
         gui.showEventContent(".event-content-data-info");
 
         $(".event-nav-link").removeClass("current");
@@ -72,21 +73,37 @@ var gui = {
     },
 
     drawEventTalks: function(){
+        $(".icon-bubbles").show();
         gui.showEventContent(".event-content-data-talks");
         $(".event-nav-link").removeClass("current");
         $(".event-nav-link-talks").addClass("current");
+
+        $(".talks-mobile").html('<ul><li class="talks-img-menu"><div class="talks-mobile-info"><p>'+gui.event.name+'</p></div><img src="'+gui.event.logo+'" border="0"></li></ul>')
+
+        for (var i=0; i<dao.cachedTrackList.length;i++) {
+            var li = $("<li></li>");
+            var a = $('<a href="#">'+dao.cachedTrackList[i].name+'</a>');
+            a.click(function(){
+                gui.hideMenu();
+                data.showTrack(gui.event.id, $(this).html());
+            });
+            li.append(a);
+            $(".talks-mobile ul").append(li)
+        }
 
         data.showTrack(gui.event.id);
 
     },
 
     drawEventSpeakers: function(){
+        $(".icon-bubbles").hide();
         gui.showEventContent(".event-content-data-speakers");
         $(".event-nav-link").removeClass("current");
         $(".event-nav-link-speakers").addClass("current");
     },
 
     drawEventLocation: function(){
+        $(".icon-bubbles").hide();
         gui.showEventContent(".event-content-data-location");
         $(".event-nav-link").removeClass("current");
         $(".event-nav-link-location").addClass("current");
@@ -153,6 +170,7 @@ var gui = {
     hideMenu: function(){
         $(".overlay-menu").remove();
         $('nav.event-mobile').hide();
+        $('nav.talks-mobile').hide();
     },
 
     showMenu: function(){
@@ -160,6 +178,13 @@ var gui = {
         $("body").append(overlay);
         overlay.on("click", gui.hideMenu);
         $('nav.event-mobile').show();
+    },
+
+    showTracksMenu: function(){
+        var overlay = $('<div class="overlay-menu"/>');
+        $("body").append(overlay);
+        overlay.on("click", gui.hideMenu);
+        $('nav.talks-mobile').show();
     },
 
     drawTrack: function(track){
