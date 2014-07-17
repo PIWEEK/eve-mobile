@@ -5,7 +5,7 @@ var dao = {
     },
 
     createTables: function(tx) {
-         //dao.execute(tx, 'DROP TABLE IF EXISTS EVENT');
+         dao.execute(tx, 'DROP TABLE IF EXISTS EVENT');
          //dao.execute(tx, 'DROP TABLE IF EXISTS TAG');
 
          //TODO: Remove, only for test
@@ -13,7 +13,7 @@ var dao = {
 
 
 
-         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS EVENT (id unique, name, startDate, endDate, hashtag, logo, tags, lastUpdate, description)');
+         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS EVENT (id unique, name, startDate, endDate, hashtag, logo, tags, lastUpdate, description, location)');
 
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TALK_FAVORITE (id unique, name, startDate, endDate, event_id, track_id, description, hashtag, speakers, tags, roomName)');
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS EVENT_UPDATE (id unique, currentUpdate)');

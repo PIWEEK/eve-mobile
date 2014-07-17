@@ -7,7 +7,6 @@ var comms = {
     },
 
     ajaxGet: function(url, success){
-        //comms.ajaxGet("http://localhost:8080/event", function(text){alert(text)});
         var xmlhttp = new XMLHttpRequest();
 
         xmlhttp.onreadystatechange = function() {
@@ -38,6 +37,6 @@ var comms = {
     },
 
     getEventData: function(eventId, success) {
-        return comms.ajaxGet(comms.urlBase+"/event"+eventId+"/complete", success);
+        return comms.ajaxGet(comms.urlBase+"/event/"+eventId+"/complete", success);
     }
 };

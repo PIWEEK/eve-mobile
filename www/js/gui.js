@@ -117,15 +117,15 @@ var gui = {
     },
     swipe: function(dir){
         var index = -1;
-        for (var i=0;i<dao.trackList.length;i++){
-            if (gui.currentTrack.name == dao.trackList[i].name){
+        for (var i=0;i<dao.cachedTrackList.length;i++){
+            if (gui.currentTrack.name == dao.cachedTrackList[i].name){
                 index = i;
                 break;
             }
         }
         index += dir;
-        if ((index >= 0) && (index < dao.trackList.length)){
-            data.showTrack(gui.event.id, dao.trackList[index].name);
+        if ((index >= 0) && (index < dao.cachedTrackList.length)){
+            data.showTrack(gui.event.id, dao.cachedTrackList[index].name);
         }
     },
 
