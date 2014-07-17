@@ -90,6 +90,8 @@ var gui = {
         gui.showEventContent(".event-content-data-location");
         $(".event-nav-link").removeClass("current");
         $(".event-nav-link-location").addClass("current");
+
+        $(".event-location-img").find("img").attr("src", gui.event.location);
     },
 
     drawTest: function(list){
