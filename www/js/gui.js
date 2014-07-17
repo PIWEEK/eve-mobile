@@ -213,7 +213,22 @@ var gui = {
         div.addClass("talks-row");
         div.append('<div class="talks-row-hour">'+date[1]+'h</div>');
         div.append('<div class="talks-row-content"><span class="talk-title">'+talk.name+'</span><span class="talk-speaker">'+speaker.name+'</span><span class="talk-location">'+talk.roomName+'</span></div>');
-        div.append('<div class="talks-row-btn modalLink"><i class="icon-plus"></i></div>');
+        div.append('<div class="talks-row-btn modalLink" data-talkid="'+talk.id+'"><i class="icon-plus"></i></div>');
+
+        div.css("max-height", "5000px");
+
+        var minutes=["30", "50", "120"];
+        var m = minutes[Math.floor(Math.random()*4)];
+
+        console.log(m);
+
+        //var min = (parseInt(talk.minutes,10)*4);
+        var min = (parseInt(m,10)*4);
+        div.css("height", min+"px");
+
+        div.find(".talks-row-hour").css("height", (min-20)+"px")
+        div.find(".talks-row-content").css("height", (min-20)+"px")
+
 
 
         $(".event-content-data-talks").append(div);
@@ -224,6 +239,36 @@ var gui = {
         var d = stringDate.split(" ");
         d[1] = d[1].substring(0, 5);
         return d;
+    },
+
+    showTalkDetail: function(talkId){
+        var talk=dao.getCachedItemById(dao.cachedTalkList, talkId);
+        var overlay = $('<div class="overlay-menu"/>');
+        overlay.height($("body").height());
+        $("body").append(overlay);
+        overlay.on("click", gui.hideDetail);
+
+        var speaker = dao.getCachedSpeakerForTalk(talkId);
+
+
+        $(".modal .modal-title").html(talk.name);
+        $(".modal .modal-speaker").html(speaker.name);
+        $(".modal .modal-text p").html(talk.description);
+
+
+        $(".modal").css('top', $(window).scrollTop() + 100 + 'px');
+
+        $(".modal").show();
+
+
+
+
+
+    },
+
+    hideDetail: function(){
+        $(".overlay-menu").remove();
+        $(".modal").hide();
     }
 
 };
