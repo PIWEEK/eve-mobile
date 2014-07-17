@@ -12,6 +12,7 @@ var dao = {
 
          //TODO: Remove, only for test
          dao.execute(tx, 'DROP TABLE IF EXISTS EVENT_UPDATE');
+         //dao.execute(tx, 'DROP TABLE IF EXISTS TAG');
 
 
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS EVENT (id unique, name, startDate, endDate, hashtag, logo, tags, lastUpdate)');
@@ -21,6 +22,7 @@ var dao = {
 
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TALK_FAVORITE (id unique, name, startDate, endDate, event_id, track_id, description, hashtag, speakers, tags, roomName)');
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS EVENT_UPDATE (id unique, currentUpdate)');
+         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TAG (eventId, name, color)');
     },
 
     updateDatabaseEventsWithJSON: function(json, success){
@@ -32,7 +34,9 @@ var dao = {
                     function(tx) {
                         //Events
                         for (i=0; i<json.events.length;i++) {
-                            dao.createEvent(tx, json.events[i]);
+                            var j = json.events[i];
+                            j.tags = "groovy, grails";
+                            dao.createEvent(tx, j);
                         }
                     },
                     dao.errorCB,
@@ -40,6 +44,26 @@ var dao = {
                 );
             }
         );
+    },
+
+    setTagColor: function(eventId, tagName, tagColor){
+        dao.db.transaction(
+            function(tx) {
+                dao.execute(tx, 'INSERT INTO TAG(eventId, name, color) VALUES("'+eventId+'", "'+tagName+'", "'+tagColor+'")');
+            }
+        );
+    },
+
+    getTags: function(eventId, querySuccess){
+        dao.db.readTransaction(function (t) {
+            t.executeSql('SELECT * from TAG where eventId="'+eventId+'"',
+                [],
+                function(tx, results){
+                    dao.querySuccess(results, querySuccess);
+                },
+                dao.errorCB
+            );
+        });
     },
 
     updateDatabaseEventDataWithJSON: function(event, json, success){
@@ -52,7 +76,7 @@ var dao = {
                 dao.updateEventData(tx, json, success);
             },
             dao.errorCB,
-            success
+            dao.successCB
         );
     },
 

@@ -58,6 +58,14 @@ var gui = {
 
         $("#event-name").html(gui.event.name);
         $(".event-img").find("img").attr("src", gui.event.logo);
+
+        $(".tagline").html("");
+
+        data.showTags(gui.event.id, gui.event.tags);
+    },
+
+    drawTag:function(tagName, tagColor){
+        $(".tagline").append('<div class="tag ' + tagColor +'">'+tagName+'</div>')
     },
 
     drawEventTalks: function(){

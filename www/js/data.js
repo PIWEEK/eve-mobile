@@ -83,6 +83,39 @@ var data = {
         } else {
             show()
         }
+    },
+
+
+    showTags: function(eventId, tags){
+        dao.getTags(eventId, function(list){
+            var freeTags = ["tag-green", "tag-pink", "tag-cyan", "tag-lime", "tag-purple", "tag-yellow", "tag-red", "tag-brown", "tag-orange", "tag-black"];
+            for (var i=0; i<list.length; i++){
+                var index = freeTags.indexOf(list[i].color);
+                freeTags.splice(index, 1);
+            }
+
+
+            var tagList = tags.split(", ");
+            for (var i=0; i<tagList.length;i++){
+                var tagName = tagList[i];
+                var color = null;
+                for (var j=0; j<list.length; j++){
+                    if (list[j].name == tagName){
+                        color = list[j].color;
+                        break;
+                    }
+                }
+
+                if (!color){
+                    color = freeTags[Math.floor(Math.random()*freeTags.length)];
+                    var index = freeTags.indexOf(color);
+                    freeTags.splice(index, 1);
+                    dao.setTagColor(eventId, tagName, color);
+                }
+                gui.drawTag(tagName, color);
+
+            }
+        });
     }
 
 
