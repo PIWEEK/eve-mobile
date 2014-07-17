@@ -5,20 +5,15 @@ var dao = {
     },
 
     createTables: function(tx) {
-         dao.execute(tx, 'DROP TABLE IF EXISTS EVENT');
-         //dao.execute(tx, 'DROP TABLE IF EXISTS TRACK');
-         //dao.execute(tx, 'DROP TABLE IF EXISTS SPEAKER');
-         //dao.execute(tx, 'DROP TABLE IF EXISTS TALK');
+         //dao.execute(tx, 'DROP TABLE IF EXISTS EVENT');
+         //dao.execute(tx, 'DROP TABLE IF EXISTS TAG');
 
          //TODO: Remove, only for test
          dao.execute(tx, 'DROP TABLE IF EXISTS EVENT_UPDATE');
-         //dao.execute(tx, 'DROP TABLE IF EXISTS TAG');
+
 
 
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS EVENT (id unique, name, startDate, endDate, hashtag, logo, tags, lastUpdate, description)');
-         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TRACK (id unique, name, event_id)');
-         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS SPEAKER (id unique, talk_id, event_id, name, twitter, bio, photo)');
-         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TALK (id unique, name, startDate, minutes, event_id, track_id, description, hashtag, tags, roomName, maxAtendees)');
 
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TALK_FAVORITE (id unique, name, startDate, endDate, event_id, track_id, description, hashtag, speakers, tags, roomName)');
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS EVENT_UPDATE (id unique, currentUpdate)');
@@ -73,10 +68,10 @@ var dao = {
                 var sql = 'INSERT OR REPLACE INTO EVENT_UPDATE(id, currentUpdate) VALUES("'+event.id+'", "' + event.lastUpdate +'")';
                 //alert(sql);
                 dao.execute(tx, sql);
-                dao.updateEventData(tx, json, success);
+                dao.updateEventData(tx, json.event);
             },
             dao.errorCB,
-            dao.successCB
+            success
         );
     },
 
@@ -85,16 +80,20 @@ var dao = {
     },
 
     updateEventData: function(tx, eventJson) {
-        //alert("updateEventData");
+         dao.execute(tx, 'DROP TABLE IF EXISTS TRACK');
+         dao.execute(tx, 'DROP TABLE IF EXISTS SPEAKER');
+         dao.execute(tx, 'DROP TABLE IF EXISTS TALK');
+         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TRACK (id unique, name, event_id)');
+         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS SPEAKER (id unique, talk_id, event_id, name, twitter, bio, photo)');
+         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TALK (id unique, name, startDate, minutes, event_id, track_id, description, hashtag, tags, roomName, maxAtendees)');
+
         for (var i=0; i<eventJson.tracks.length;i++) {
             dao.insertJSON(tx, 'TRACK', eventJson.tracks[i]);
         }
 
-
         for (var i=0; i<eventJson.speakers.length;i++) {
             dao.insertJSON(tx, 'SPEAKER', eventJson.speakers[i]);
         }
-
 
         for (var i=0; i<eventJson.talks.length;i++) {
             dao.insertJSON(tx, 'TALK', eventJson.talks[i]);
@@ -133,13 +132,12 @@ var dao = {
         //alert("Success");
     },
 
-    test2: function(id) {
-        dao.listTalks(id, gui.drawTalks)
+    test: function(id) {
+
     },
 
     getEvent: function(eventId, querySuccess){
         dao.db.readTransaction(function (t) {
-            //t.executeSql('SELECT * FROM EVENT LEFT JOIN EVENT_UPDATE ON EVENT.id = EVENT_UPDATE.id AND EVENT_UPDATE.id=?',
             t.executeSql('SELECT EVENT.*,  EVENT_UPDATE.currentUpdate FROM EVENT LEFT JOIN EVENT_UPDATE ON EVENT.id = EVENT_UPDATE.id WHERE EVENT.id="'+eventId+'"',
                 [],
                 function(tx, results){
@@ -261,5 +259,24 @@ var dao = {
 
     databaseStart: function(){
         dao.db = window.openDatabase("evedb", "1.0", "Eve DB", 1000000);
+    },
+
+
+    getCachedItemById: function(list, id){
+        for (var i=0; i<list.length;i++){
+            if (list[i].id == id) {
+                return (list[i]);
+            }
+        }
+        return {};
+    },
+
+    getCachedSpeakerForTalk: function(talkId){
+        for (var i=0; i<dao.cachedSpeakerList.length;i++){
+            if (dao.cachedSpeakerList[i].talk_id == talkId) {
+                return (dao.cachedSpeakerList[i]);
+            }
+        }
+        return {};
     }
 };

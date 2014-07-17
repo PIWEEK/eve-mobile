@@ -1,4 +1,5 @@
 var comms = {
+    urlBase: "http://eveapp.ctrlz.es",
     checkConnection: function() {
         var networkState = navigator.network.connection.type;
         comms.online = (networkState != Connection.NONE);
@@ -33,10 +34,10 @@ var comms = {
     },
 
     getEventList: function(success) {
-        return comms.ajaxGet("http://10.8.1.11:8080/event", success);
+        return comms.ajaxGet(comms.urlBase+"/event", success);
     },
 
     getEventData: function(eventId, success) {
-        return comms.ajaxGet("http://10.8.1.11:8080/event"+eventId+"/complete", success);
+        return comms.ajaxGet(comms.urlBase+"/event"+eventId+"/complete", success);
     }
 };

@@ -48,22 +48,40 @@ var data = {
                             eventId,
                             function(text){
                                 var eventContent = JSON.parse(text);
-                                dao.updateDatabaseEventDataWithJSON(event, eventContent, function(){data.updating = false;});
+                                dao.updateDatabaseEventDataWithJSON(event, eventContent, function(){
+                                    data.cacheEventData(eventId);
+                                    data.updating = false;
+                                });
                             }
                         );
 
 
 
                     } else {
-                        //dao.listTalks(eventId, gui.drawTalks);
+                        data.cacheEventData(eventId);
                         data.updating = false;
+
                     }
                 }
             )
 
         } else {
-            //dao.listTalks(eventId, gui.drawTalks);
+            data.cacheEventData(eventId);
         }
+    },
+
+    cacheEventData: function(eventId){
+        dao.listTracks(eventId, function(list){
+            dao.cachedTrackList = list;
+        });
+
+        dao.listSpeakers(eventId, function(list){
+            dao.cachedSpeakerList = list;
+        });
+
+        dao.listTalks(eventId, function(list){
+            dao.cachedTalkList = list;
+        });
     },
 
     selectEvent: function(eventId){
@@ -119,34 +137,19 @@ var data = {
 
     showTrack: function(eventId, trackName){
         if (!trackName) {
-            dao.listTracks(eventId, function(list){
-                //REMOVE
-                list = [{name:'track01', id:'1'}, {name:'track02', id:'2'}, {name:'track03', id:'3'}]
-                dao.trackList = list;
-                data.showTrack(eventId, list[0].name);
-            });
-        } else {
-            dao.getTrack(eventId, trackName, function(list){
-                var track = list[0];
-                //REMOVE
-                for (var i=0; i< dao.trackList.length;i++){
-                    if (dao.trackList[i].name == trackName){
-                        track = dao.trackList[i];
-                        break;
-                    }
-                }
-
-
-
-                gui.drawTrack(track);
-                dao.listTalksByTrack(eventId, track.id, function(list){
-                    list = [{day:'03/01/2014'},{day:'03/01/2014'},{day:'03/01/2014'},{day:'04/01/2014'}]
-                    for (var i=0; i<list.length;i++){
-                        gui.drawTalk(list[i]);
-                    }
-                });
-            });
+            trackName = dao.cachedTrackList[0].name;
         }
+        dao.getTrack(eventId, trackName, function(list){
+            var track = list[0];
+
+            gui.drawTrack(track);
+            dao.listTalksByTrack(eventId, track.id, function(list){
+                for (var i=0; i<list.length;i++){
+                    gui.drawTalk(list[i]);
+                }
+            });
+        });
+
 
     }
 

@@ -177,9 +177,10 @@ var gui = {
         }
 
         var div = $('<div></div>');
+        var speaker = dao.getCachedSpeakerForTalk(talk.id);
         div.addClass("talks-row");
         div.append('<div class="talks-row-hour">09:00h</div>');
-        div.append('<div class="talks-row-content"><span class="talk-title">Talk title lorem ipsum</span><span class="talk-speaker">@speakermaster</span><span class="talk-location">Sala 1</span></div>');
+        div.append('<div class="talks-row-content"><span class="talk-title">'+talk.name+'</span><span class="talk-speaker">'+speaker.name+'</span><span class="talk-location">'+talk.roomName+'</span></div>');
         div.append('<div class="talks-row-btn modalLink"><i class="icon-plus"></i></div>');
 
 
