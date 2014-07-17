@@ -21,4 +21,21 @@ jQuery(document).ready(function() {
     $(".event-nav-link-talks").click(gui.drawEventTalks);
     $(".event-nav-link-speakers").click(gui.drawEventSpeakers);
     $(".event-nav-link-location").click(gui.drawEventLocation);
+
+
+    var networkState = navigator.network;
+    if (networkState) {
+        $.getScript("js/comms.js", function(){
+            $.getScript("js/index.js", function(){
+                app.initialize();
+            })
+        })
+    } else {
+        $.getScript("js/comms-desktop.js", function(){
+            $.getScript("js/index-desktop.js", function(){
+                app.initialize();
+            })
+        })
+    }
+
 });
