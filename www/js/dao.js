@@ -15,10 +15,10 @@ var dao = {
          //dao.execute(tx, 'DROP TABLE IF EXISTS TAG');
 
 
-         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS EVENT (id unique, name, startDate, endDate, hashtag, logo, tags, lastUpdate)');
+         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS EVENT (id unique, name, startDate, endDate, hashtag, logo, tags, lastUpdate, description)');
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TRACK (id unique, name, event_id)');
-         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS SPEAKER (id unique, event_id, name, twitter, bio, photo)');
-         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TALK (id unique, name, startDate, endDate, event_id, track_id, description, hashtag, speakers, tags, roomName, maxAtendees)');
+         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS SPEAKER (id unique, talk_id, event_id, name, twitter, bio, photo)');
+         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TALK (id unique, name, startDate, minutes, event_id, track_id, description, hashtag, tags, roomName, maxAtendees)');
 
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TALK_FAVORITE (id unique, name, startDate, endDate, event_id, track_id, description, hashtag, speakers, tags, roomName)');
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS EVENT_UPDATE (id unique, currentUpdate)');
@@ -67,11 +67,11 @@ var dao = {
     },
 
     updateDatabaseEventDataWithJSON: function(event, json, success){
-        alert("updateDatabaseEventDataWithJSON");
+        //alert("updateDatabaseEventDataWithJSON");
         dao.db.transaction(
             function(tx) {
                 var sql = 'INSERT OR REPLACE INTO EVENT_UPDATE(id, currentUpdate) VALUES("'+event.id+'", "' + event.lastUpdate +'")';
-                alert(sql);
+                //alert(sql);
                 dao.execute(tx, sql);
                 dao.updateEventData(tx, json, success);
             },
@@ -85,7 +85,7 @@ var dao = {
     },
 
     updateEventData: function(tx, eventJson) {
-        alert("updateEventData");
+        //alert("updateEventData");
         for (var i=0; i<eventJson.tracks.length;i++) {
             dao.insertJSON(tx, 'TRACK', eventJson.tracks[i]);
         }
@@ -189,9 +189,33 @@ var dao = {
         });
     },
 
+    listTalksByTrack: function(eventId, trackId, querySuccess){
+        dao.db.readTransaction(function (t) {
+            t.executeSql('SELECT * FROM TALK WHERE EVENT_ID="'+eventId+'" and TRACK_ID="'+trackId+'"',
+                [],
+                function(tx, results){
+                    dao.querySuccess(results, querySuccess);
+                },
+                dao.errorCB
+            );
+        });
+    },
+
     listTracks: function(eventId, querySuccess){
         dao.db.readTransaction(function (t) {
             t.executeSql('SELECT * FROM TRACK WHERE EVENT_ID="'+eventId+'"',
+                [],
+                function(tx, results){
+                    dao.querySuccess(results, querySuccess);
+                },
+                dao.errorCB
+            );
+        });
+    },
+
+    getTrack: function(eventId, trackName, querySuccess){
+        dao.db.readTransaction(function (t) {
+            t.executeSql('SELECT * FROM TRACK WHERE EVENT_ID="'+eventId+'" and name="'+trackName+'"',
                 [],
                 function(tx, results){
                     dao.querySuccess(results, querySuccess);

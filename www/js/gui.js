@@ -2,7 +2,7 @@ var gui = {
     currentContent: 0,
 
     init: function(){
-
+        gui.initSwipe();
     },
     showContent: function(selector){
         $(".content").addClass("hide");
@@ -72,6 +72,9 @@ var gui = {
         gui.showEventContent(".event-content-data-talks");
         $(".event-nav-link").removeClass("current");
         $(".event-nav-link-talks").addClass("current");
+
+        data.showTrack(gui.event.id);
+
     },
 
     drawEventSpeakers: function(){
@@ -104,8 +107,7 @@ var gui = {
         document.getElementById("event-talk-list").innerHTML = html;
     },
     initSwipe: function(){
-        var body = document.getElementById("body");
-        var mc = Hammer(body);
+        var mc = Hammer($('.event-content-data-talks')[0]);
         mc.on("swipeleft", function(){
             gui.swipe (1)
         });
@@ -114,13 +116,17 @@ var gui = {
         });
     },
     swipe: function(dir){
-            var nextContent = gui.currentContent + dir;
-            var nextElement = document.getElementById("content"+nextContent);
-            if (nextElement) {
-                document.getElementById("content"+gui.currentContent).className = "content hide";
-                nextElement.className = "content";
-                gui.currentContent = nextContent;
+        var index = -1;
+        for (var i=0;i<dao.trackList.length;i++){
+            if (gui.currentTrack.name == dao.trackList[i].name){
+                index = i;
+                break;
             }
+        }
+        index += dir;
+        if ((index >= 0) && (index < dao.trackList.length)){
+            data.showTrack(gui.event.id, dao.trackList[index].name);
+        }
     },
 
     findEvents: function(text){
@@ -140,15 +146,44 @@ var gui = {
     },
 
     hideMenu: function(){
-        $(".overlay").remove();
+        $(".overlay-menu").remove();
         $('nav.event-mobile').hide();
     },
 
     showMenu: function(){
-        var overlay = $('<div class="overlay"/>');
+        var overlay = $('<div class="overlay-menu"/>');
         $("body").append(overlay);
         overlay.on("click", gui.hideMenu);
         $('nav.event-mobile').show();
+    },
+
+    drawTrack: function(track){
+        gui.currentTrack = track;
+        $(".talks-track-title h2").html(track.name);
+        //TODO: day
+        //$(".talks-day-title h3").html(track.name);
+
+        $(".talks-day-title").remove();
+        $(".talks-row").remove();
+
+        gui.day = null;
+    },
+
+    drawTalk: function(talk){
+
+        if (talk.day != gui.day) {
+            $(".event-content-data-talks").append('<div class="talks-day-title"><h3>'+talk.day+'</h3></div>');
+            gui.day = talk.day;
+        }
+
+        var div = $('<div></div>');
+        div.addClass("talks-row");
+        div.append('<div class="talks-row-hour">09:00h</div>');
+        div.append('<div class="talks-row-content"><span class="talk-title">Talk title lorem ipsum</span><span class="talk-speaker">@speakermaster</span><span class="talk-location">Sala 1</span></div>');
+        div.append('<div class="talks-row-btn modalLink"><i class="icon-plus"></i></div>');
+
+
+        $(".event-content-data-talks").append(div);
     }
 
 };
