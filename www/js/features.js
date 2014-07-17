@@ -33,7 +33,8 @@ jQuery(document).ready(function() {
     } else {
         $.getScript("js/comms-desktop.js", function(){
             $.getScript("js/index-desktop.js", function(){
-                app.initialize();
+                //app.initialize();
+                app.desktop();
             })
         })
     }
