@@ -14,7 +14,7 @@ var dao = {
          //dao.execute(tx, 'DROP TABLE IF EXISTS TAG');
 
          //TODO: Remove, only for test
-         dao.execute(tx, 'DROP TABLE IF EXISTS EVENT_UPDATE');
+         //dao.execute(tx, 'DROP TABLE IF EXISTS EVENT_UPDATE');
 
 
 
