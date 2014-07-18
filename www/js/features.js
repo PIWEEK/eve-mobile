@@ -32,7 +32,11 @@ jQuery(document).ready(function() {
     $(".modal-share a").click(function(e) {
         e.preventDefault();
         var twitterMessage = $(this).data('twittermessage');
-        window.plugins.socialsharing.shareViaTwitter(twitterMessage);
+        var message = {
+            text: twitterMessage,
+            activityTypes: ["PostToTwitter"]
+        };
+        window.socialmessage.send(message);
     });
 
     if (typeof cordova !== 'undefined' ) {
