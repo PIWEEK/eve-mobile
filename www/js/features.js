@@ -20,8 +20,14 @@ jQuery(document).ready(function() {
     });
 
     $(".closeBtn").click(function(e){
-        e.preventDefault()
+        e.preventDefault();
         gui.hideDetail();
+    });
+
+    $(".modal-share a").click(function(e) {
+        e.preventDefault();
+        var twitterMessage = $(this).data('twittermessage');
+        window.plugins.socialsharing.shareViaTwitter(twitterMessage);
     });
 
     if (typeof cordova !== 'undefined' ) {
