@@ -92,6 +92,7 @@ var gui = {
     },
 
     drawUserAgenda: function() {
+        $(".talks-track-title h2").html("My agenda");
         $(".talks-day-title").remove();
         $(".talks-row").remove();
         $(".icon-bubbles").hide();
@@ -128,6 +129,7 @@ var gui = {
         $(".event-nav-link-location").addClass("current");
 
         $(".event-location-img").find("img").attr("src", gui.event.location);
+        $(".event-location-text p").html(gui.event.location_description);
     },
 
     drawTest: function(list){
