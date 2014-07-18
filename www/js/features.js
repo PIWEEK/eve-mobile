@@ -11,6 +11,7 @@ jQuery(document).ready(function() {
 
     $(".event-nav-link-info").click(gui.drawEventInfo);
     $(".event-nav-link-talks").click(function(){data.showEventData(gui.drawEventTalks)});
+    $(".event-nav-link-myagenda").click(function(){data.showEventData(gui.drawUserAgenda)});
     $(".event-nav-link-speakers").click(function(){data.showEventData(gui.drawEventSpeakers)});
     $(".event-nav-link-location").click(function(){data.showEventData(gui.drawEventLocation)});
 

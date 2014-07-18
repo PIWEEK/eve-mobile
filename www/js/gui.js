@@ -84,11 +84,33 @@ var gui = {
                 data.showTrack(gui.event.id, $(this).html());
             });
             li.append(a);
-            $(".talks-mobile ul").append(li)
+            $(".talks-mobile ul").append(li);
         }
 
         data.showTrack(gui.event.id);
 
+    },
+
+    drawUserAgenda: function() {
+        $(".icon-bubbles").show();
+        gui.showEventContent(".event-content-data-talks");
+        $(".event-nav-link").removeClass("current");
+        $(".event-nav-link-myagenda").addClass("current");
+
+        $(".talks-mobile").html('<ul><li class="talks-img-menu"><div class="talks-mobile-info"><p>'+gui.event.name+'</p></div><img src="'+gui.event.logo+'" border="0"></li></ul>')
+
+        for (var i=0; i<dao.cachedTrackList.length;i++) {
+            var li = $("<li></li>");
+            var a = $('<a href="#">'+dao.cachedTrackList[i].name+'</a>');
+            a.click(function(){
+                gui.hideMenu();
+                data.showUserAgenda(gui.event.id, $(this).html());
+            });
+            li.append(a);
+            $(".talks-mobile ul").append(li);
+        }
+
+        data.showTrack(gui.event.id);
     },
 
     drawEventSpeakers: function(){

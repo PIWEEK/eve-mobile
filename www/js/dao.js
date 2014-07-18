@@ -22,6 +22,7 @@ var dao = {
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TALK_FAVORITE (id unique, name, startDate, endDate, event_id, track_id, description, hashtag, speakers, tags, roomName)');
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS EVENT_UPDATE (id unique, currentUpdate)');
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TAG (eventId, name, color)');
+         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS USER_AGENDA (talk_id, track_name, color)');
     },
 
     updateDatabaseEventsWithJSON: function(json, success){
