@@ -247,9 +247,10 @@ var gui = {
 
 
         $(".modal .modal-title").html(talk.name);
-        $(".modal .modal-speaker").html("");
-        $(".modal .modal-speaker").append('<img width="100px" src="'+speaker.photo+'"></img>&nbsp;'+speaker.name);
+        $(".modal .modal-speaker").html(speaker.name);
         $(".modal .modal-text p").html(talk.description);
+        $(".modal  img").attr('src', speaker.photo);
+        $(".modal .modal-share a").data('twittermessage', gui.event.hashtag+' '+talk.hashtag+' '+speaker.twitter);
 
         $(".modal .tagline").html("");
         data.showTags($(".modal"), talk.event_id, talk.tags);
@@ -272,6 +273,7 @@ var gui = {
         $(".modal .modal-speaker").html(speaker.position);
         $(".modal .modal-text p").html(speaker.bio);
         $(".modal  img").attr('src', speaker.photo);
+        $(".modal .modal-share a").data('twittermessage', gui.event.hashtag+' '+speaker.twitter);
 
         $(".modal .tagline").html("");
 
