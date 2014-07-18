@@ -13,7 +13,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"SocialMessage\"><param name=\"android-package\" value=\"uk.co.ilee.socialmessage.SocialMessage\" /></feature>",
+                            "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -25,13 +25,14 @@
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
                             "count": 1
-                        },
+                        }
+                    ],
+                    "/manifest": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
                             "count": 1
                         }
-                    ],
-                    "/manifest": []
+                    ]
                 }
             }
         }
@@ -40,7 +41,7 @@
         "org.apache.cordova.network-information": {
             "PACKAGE_NAME": "eve.mobile"
         },
-        "uk.co.ilee.socialmessage": {
+        "nl.x-services.plugins.socialsharing": {
             "PACKAGE_NAME": "eve.mobile"
         }
     },

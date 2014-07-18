@@ -36,11 +36,7 @@ jQuery(document).ready(function() {
     $(".modal-share a").click(function(e) {
         e.preventDefault();
         var twitterMessage = $(this).data('twittermessage');
-        var message = {
-            text: twitterMessage,
-            activityTypes: ["PostToTwitter"]
-        };
-        window.socialmessage.send(message);
+        window.plugins.socialsharing.shareViaTwitter(twitterMessage);
     });
 
     if (typeof cordova !== 'undefined' ) {
