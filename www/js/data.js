@@ -99,7 +99,7 @@ var data = {
     },
 
 
-    showTags: function(eventId, tags){
+    showTags: function(guiElement, eventId, tags){
         dao.getTags(eventId, function(list){
             var freeTags = ["tag-green", "tag-pink", "tag-cyan", "tag-lime", "tag-purple", "tag-yellow", "tag-red", "tag-brown", "tag-orange", "tag-black"];
             for (var i=0; i<list.length; i++){
@@ -125,7 +125,7 @@ var data = {
                     freeTags.splice(index, 1);
                     dao.setTagColor(eventId, tagName, color);
                 }
-                gui.drawTag(tagName, color);
+                gui.drawTag(guiElement, tagName, color);
 
             }
         });

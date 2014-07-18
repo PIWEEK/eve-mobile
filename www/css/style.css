@@ -277,6 +277,10 @@ input.search:focus:-ms-input-placeholder {
   color: #006680;
   margin-bottom: 12px;
 }
+
+.modal .modal-speaker img{
+    width: 100px;
+}
 .modal .modal-share {
   width: 100%;
   text-align: center;

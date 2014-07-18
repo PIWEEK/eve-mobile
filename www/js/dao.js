@@ -17,7 +17,7 @@ var dao = {
 
 
 
-         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS EVENT (id unique, name, startDate, endDate, hashtag, logo, tags, lastUpdate, description, location)');
+         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS EVENT (id unique, name, startDate, endDate, hashtag, logo, tags, lastUpdate, description, location, location_description)');
 
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TALK_FAVORITE (id unique, name, startDate, endDate, event_id, track_id, description, hashtag, speakers, tags, roomName)');
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS EVENT_UPDATE (id unique, currentUpdate)');
@@ -33,9 +33,7 @@ var dao = {
                     function(tx) {
                         //Events
                         for (i=0; i<json.events.length;i++) {
-                            var j = json.events[i];
-                            j.tags = "groovy, grails";
-                            dao.createEvent(tx, j);
+                            dao.createEvent(tx, json.events[i]);
                         }
                     },
                     dao.errorCB,
