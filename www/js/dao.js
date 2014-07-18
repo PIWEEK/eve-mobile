@@ -83,7 +83,7 @@ var dao = {
 
     updateEventData: function(tx, eventJson) {
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TRACK (id unique, name, event_id)');
-         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS SPEAKER (id unique, talk_id, event_id, name, twitter, bio, photo)');
+         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS SPEAKER (id unique, talk_id, event_id, name, twitter, bio, photo, position, tags)');
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TALK (id unique, name, startDate, minutes, event_id, track_id, description, hashtag, tags, roomName, maxAtendees)');
 
          dao.execute(tx, 'DELETE FROM TRACK WHERE event_id="'+eventJson.id+'"');

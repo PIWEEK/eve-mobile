@@ -15,8 +15,12 @@ jQuery(document).ready(function() {
     $(".event-nav-link-location").click(function(){data.showEventData(gui.drawEventLocation)});
 
 
-    $( "body" ).on( "click", ".modalLink", function() {
+    $( "body" ).on( "click", ".talks-row .modalLink", function() {
         gui.showTalkDetail($(this).data('talkid'));
+    });
+
+    $( "body" ).on( "click", ".speaker-row .modalLink", function() {
+        gui.showSpeakerDetail($(this).data('speakerid'));
     });
 
     $(".closeBtn").click(function(e){

@@ -63,7 +63,7 @@ var gui = {
 
         $(".event-text p").html(gui.event.description);
 
-        $(".tagline").html("");
+        $(".event-content-data-info .tagline").html("");
 
         data.showTags($(".event-content-data-info"), gui.event.id, gui.event.tags);
     },
@@ -96,6 +96,12 @@ var gui = {
         gui.showEventContent(".event-content-data-speakers");
         $(".event-nav-link").removeClass("current");
         $(".event-nav-link-speakers").addClass("current");
+
+        $(".event-content-data-speakers").html("");
+
+        for (var i=0; i<dao.cachedSpeakerList.length;i++){
+            gui.drawSpeaker(dao.cachedSpeakerList[i]);
+        }
     },
 
     drawEventLocation: function(){
@@ -114,15 +120,6 @@ var gui = {
         }
         html +="</ul>";
         document.getElementById("event-list").innerHTML = html;
-    },
-
-    drawTalks: function(list){
-        var html = "TALKS<br /><ul>";
-        for (i = 0; i < list.length; i++){
-            html += "<li>"+list[i].name+"</li>"
-        }
-        html +="</ul>";
-        document.getElementById("event-talk-list").innerHTML = html;
     },
     initSwipe: function(){
         var mc = Hammer($('.event-content-data-talks')[0]);
@@ -261,10 +258,39 @@ var gui = {
         $(".modal").css('top', $(window).scrollTop() + 100 + 'px');
 
         $(".modal").show();
+    },
+
+    showSpeakerDetail: function(speakerId){
+        var speaker=dao.getCachedItemById(dao.cachedSpeakerList, speakerId);
+        var overlay = $('<div class="overlay-menu"/>');
+        overlay.height($("body").height());
+        $("body").append(overlay);
+        overlay.on("click", gui.hideDetail);
 
 
+        $(".modal .modal-title").html(speaker.name);
+        $(".modal .modal-speaker").html(speaker.position);
+        $(".modal .modal-text p").html(speaker.bio);
+        $(".modal  img").attr('src', speaker.photo);
+
+        $(".modal .tagline").html("");
+
+        data.showTags($(".modal"), speaker.event_id, speaker.tags);
 
 
+        $(".modal").css('top', $(window).scrollTop() + 100 + 'px');
+
+        $(".modal").show();
+    },
+
+    drawSpeaker: function(speaker){
+       var div = $('<div></div>');
+       div.addClass('speaker-row');
+       div.append('<div class="speaker-row-img"><img src="'+speaker.photo+'" alt="'+speaker.name+'" border="0"></div>');
+       div.append('<div class="speaker-row-content"><span class="speaker-name">'+speaker.name+'</span><span class="speaker-title">'+speaker.position+'</span><div class="tagline"></div></div><div class="speaker-row-btn modalLink" data-speakerid="'+speaker.id+'"><i class="icon-plus"></i></div></div>');
+       $(".event-content-data-speakers").append(div);
+
+       data.showTags(div, speaker.event_id, speaker.tags);
 
     },
 
