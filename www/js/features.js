@@ -27,7 +27,6 @@ jQuery(document).ready(function() {
     $( "body" ).on( "click", ".speaker-row .modalLink", function() {
         gui.showSpeakerDetail($(this).data('speakerid'));
     });
-
     $(".closeBtn").click(function(e){
         e.preventDefault();
         gui.hideDetail();
@@ -47,6 +46,47 @@ jQuery(document).ready(function() {
                 $('.icon-eve').click(gui.hideMenu);
                 $('#talks-nav-icon').click(gui.showTracksMenu);
                 $.rloader([{src:'css/style-mobile.css'}]);
+
+alert("pre request file system");
+            // filesystem
+function onInitFs(fs) {
+  console.log('Opened file system: ' + fs.name);
+  alert('Opened file system: ' + fs.name);
+}
+
+function errorHandler(e) {
+  var msg = '';
+
+  switch (e.code) {
+    case FileError.QUOTA_EXCEEDED_ERR:
+      msg = 'QUOTA_EXCEEDED_ERR';
+      break;
+    case FileError.NOT_FOUND_ERR:
+      msg = 'NOT_FOUND_ERR';
+      break;
+    case FileError.SECURITY_ERR:
+      msg = 'SECURITY_ERR';
+      break;
+    case FileError.INVALID_MODIFICATION_ERR:
+      msg = 'INVALID_MODIFICATION_ERR';
+      break;
+    case FileError.INVALID_STATE_ERR:
+      msg = 'INVALID_STATE_ERR';
+      break;
+    default:
+      msg = 'Unknown Error';
+      break;
+  };
+
+  console.log('Error: ' + msg);
+  alert('Error: ' + msg);
+}
+alert("pre2 request file system");
+
+window.requestFileSystem(window.TEMPORARY, 5*1024*1024 /*5MB*/, onInitFs, errorHandler);
+
+alert("post request file system");
+
             })
         })
     } else {
@@ -85,6 +125,7 @@ jQuery(document).ready(function() {
             })
         })
     };
+
 
 
 
