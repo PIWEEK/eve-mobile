@@ -5,6 +5,10 @@ var dao = {
     },
 
     createTables: function(tx) {
+         //dao.execute(tx, 'DROP TABLE IF EXISTS TRACK');
+         //dao.execute(tx, 'DROP TABLE IF EXISTS SPEAKER');
+         //dao.execute(tx, 'DROP TABLE IF EXISTS TALK');
+
          dao.execute(tx, 'DROP TABLE IF EXISTS EVENT');
          //dao.execute(tx, 'DROP TABLE IF EXISTS TAG');
 
@@ -80,12 +84,14 @@ var dao = {
     },
 
     updateEventData: function(tx, eventJson) {
-         dao.execute(tx, 'DROP TABLE IF EXISTS TRACK');
-         dao.execute(tx, 'DROP TABLE IF EXISTS SPEAKER');
-         dao.execute(tx, 'DROP TABLE IF EXISTS TALK');
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TRACK (id unique, name, event_id)');
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS SPEAKER (id unique, talk_id, event_id, name, twitter, bio, photo)');
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TALK (id unique, name, startDate, minutes, event_id, track_id, description, hashtag, tags, roomName, maxAtendees)');
+
+         dao.execute(tx, 'DELETE FROM TRACK WHERE event_id="'+eventJson.id+'"');
+         dao.execute(tx, 'DELETE FROM SPEAKER WHERE event_id="'+eventJson.id+'"');
+         dao.execute(tx, 'DELETE FROM TALK WHERE event_id="'+eventJson.id+'"');
+
 
         for (var i=0; i<eventJson.tracks.length;i++) {
             dao.insertJSON(tx, 'TRACK', eventJson.tracks[i]);
