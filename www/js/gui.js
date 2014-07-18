@@ -50,6 +50,7 @@ var gui = {
     },
 
     drawEventInfo: function(){
+        gui.section = "info";
         $(".icon-bubbles").hide();
         gui.showEventContent(".event-content-data-info");
 
@@ -69,6 +70,7 @@ var gui = {
     },
 
     drawEventTalks: function(){
+        gui.section = "talks";
         $(".icon-bubbles").show();
         gui.showEventContent(".event-content-data-talks");
         $(".event-nav-link").removeClass("current");
@@ -92,6 +94,7 @@ var gui = {
     },
 
     drawUserAgenda: function() {
+        gui.section = "agenda";
         $(".talks-track-title h2").html("My agenda");
         $(".talks-day-title").remove();
         $(".talks-row").remove();
@@ -110,6 +113,7 @@ var gui = {
     },
 
     drawEventSpeakers: function(){
+        gui.section = "speakers";
         $(".icon-bubbles").hide();
         gui.showEventContent(".event-content-data-speakers");
         $(".event-nav-link").removeClass("current");
@@ -123,6 +127,7 @@ var gui = {
     },
 
     drawEventLocation: function(){
+        gui.section = "location";
         $(".icon-bubbles").hide();
         gui.showEventContent(".event-content-data-location");
         $(".event-nav-link").removeClass("current");
@@ -150,16 +155,18 @@ var gui = {
         });
     },
     swipe: function(dir){
-        var index = -1;
-        for (var i=0;i<dao.cachedTrackList.length;i++){
-            if (gui.currentTrack.name == dao.cachedTrackList[i].name){
-                index = i;
-                break;
+        if (gui.section == "talks") {
+            var index = -1;
+            for (var i=0;i<dao.cachedTrackList.length;i++){
+                if (gui.currentTrack.name == dao.cachedTrackList[i].name){
+                    index = i;
+                    break;
+                }
             }
-        }
-        index += dir;
-        if ((index >= 0) && (index < dao.cachedTrackList.length)){
-            data.showTrack(gui.event.id, dao.cachedTrackList[index].name);
+            index += dir;
+            if ((index >= 0) && (index < dao.cachedTrackList.length)){
+                data.showTrack(gui.event.id, dao.cachedTrackList[index].name);
+            }
         }
     },
 
