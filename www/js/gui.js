@@ -92,25 +92,20 @@ var gui = {
     },
 
     drawUserAgenda: function() {
-        $(".icon-bubbles").show();
+        $(".talks-day-title").remove();
+        $(".talks-row").remove();
+        $(".icon-bubbles").hide();
         gui.showEventContent(".event-content-data-talks");
         $(".event-nav-link").removeClass("current");
         $(".event-nav-link-myagenda").addClass("current");
 
-        $(".talks-mobile").html('<ul><li class="talks-img-menu"><div class="talks-mobile-info"><p>'+gui.event.name+'</p></div><img src="'+gui.event.logo+'" border="0"></li></ul>')
-
-        for (var i=0; i<dao.cachedTrackList.length;i++) {
-            var li = $("<li></li>");
-            var a = $('<a href="#">'+dao.cachedTrackList[i].name+'</a>');
-            a.click(function(){
-                gui.hideMenu();
-                data.showUserAgenda(gui.event.id, $(this).html());
-            });
-            li.append(a);
-            $(".talks-mobile ul").append(li);
+        for (var i=0; i<dao.cachedTalkList.length;i++) {
+            var talk = dao.cachedTalkList[i];
+            var favoriteTalk = dao.getCachedItemById(dao.cachedFavoriteTalkList, talk.id);
+            if (favoriteTalk.id !== undefined){
+                gui.drawTalk(talk, true);
+            }
         }
-
-        data.showTrack(gui.event.id);
     },
 
     drawEventSpeakers: function(){
@@ -205,8 +200,6 @@ var gui = {
     drawTrack: function(track){
         gui.currentTrack = track;
         $(".talks-track-title h2").html(track.name);
-        //TODO: day
-        //$(".talks-day-title h3").html(track.name);
 
         $(".talks-day-title").remove();
         $(".talks-row").remove();
@@ -214,7 +207,7 @@ var gui = {
         gui.day = null;
     },
 
-    drawTalk: function(talk){
+    drawTalk: function(talk, hideStar){
         var date = gui.parseDate(talk.startDate);
 
         if (date[0] != gui.day) {
@@ -223,12 +216,21 @@ var gui = {
 
         }
 
+        var current = "";
+        var favoriteTalk = dao.getCachedItemById(dao.cachedFavoriteTalkList, talk.id);
+        if (favoriteTalk.id !== undefined){
+            current = "current";
+        }
+
         var div = $('<div></div>');
         var speaker = dao.getCachedSpeakerForTalk(talk.id);
         div.addClass("talks-row");
         div.addClass("talks-row-"+talk.id);
         div.append('<div class="talks-row-hour">'+date[1]+'h</div>');
         div.append('<div class="talks-row-content"><span class="talk-title">'+talk.name+'</span><span class="talk-speaker">'+speaker.name+'</span><span class="talk-location">'+talk.roomName+'</span><div class="tagline"></div></div>');
+        if (hideStar !== true){
+            div.append('<div class="talks-row-btn star '+current+'" data-talkid="'+talk.id+'"><i class="icon-star"></i></div>');
+        }
         div.append('<div class="talks-row-btn modalLink" data-talkid="'+talk.id+'"><i class="icon-plus"></i></div>');
 
         data.showTags(div, talk.event_id, talk.tags);
@@ -321,6 +323,14 @@ var gui = {
     hideDetail: function(){
         $(".overlay-menu").remove();
         $(".modal").hide();
+    },
+
+    markAsFavorite: function(element, favorite){
+        if (favorite) {
+            element.addClass("current");
+        } else {
+            element.removeClass("current");
+        }
     }
 
 };

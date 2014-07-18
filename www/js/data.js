@@ -78,6 +78,10 @@ var data = {
         dao.listTalks(eventId, function(list){
             dao.cachedTalkList = list;
         });
+
+        dao.listFavoriteTalks(eventId, function(list){
+            dao.cachedFavoriteTalkList = list;
+        });
     },
 
     selectEvent: function(eventId){
@@ -147,7 +151,24 @@ var data = {
         });
     },
 
-    showUserAgenda: function() {
+    talkFavoriteToogle: function(element, talkId){
+        //Update cache
+        var favoriteTalk = dao.getCachedItemById(dao.cachedFavoriteTalkList, talkId);
+
+        if (favoriteTalk.id !== undefined){
+            dao.setTalkAsFavorite(talkId, gui.event.id, false);
+            gui.markAsFavorite(element, false);
+        } else {
+            dao.setTalkAsFavorite(talkId, gui.event.id, true);
+            gui.markAsFavorite(element, true);
+        }
+
+        dao.listFavoriteTalks(gui.event.id, function(list){
+            dao.cachedFavoriteTalkList = list;
+        });
+
 
     }
+
+
 };

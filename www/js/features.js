@@ -16,6 +16,10 @@ jQuery(document).ready(function() {
     $(".event-nav-link-location").click(function(){data.showEventData(gui.drawEventLocation)});
 
 
+    $( "body" ).on( "click", ".talks-row .star", function() {
+        data.talkFavoriteToogle($(this), $(this).data('talkid'));
+    });
+
     $( "body" ).on( "click", ".talks-row .modalLink", function() {
         gui.showTalkDetail($(this).data('talkid'));
     });
@@ -84,5 +88,8 @@ jQuery(document).ready(function() {
 
             })
         })
-    }
+    };
+
+
+
 });

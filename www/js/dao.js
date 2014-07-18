@@ -8,6 +8,7 @@ var dao = {
          //dao.execute(tx, 'DROP TABLE IF EXISTS TRACK');
          //dao.execute(tx, 'DROP TABLE IF EXISTS SPEAKER');
          //dao.execute(tx, 'DROP TABLE IF EXISTS TALK');
+         //dao.execute(tx, 'DROP TABLE IF EXISTS TALK_FAVORITE');
 
          dao.execute(tx, 'DROP TABLE IF EXISTS EVENT');
          //dao.execute(tx, 'DROP TABLE IF EXISTS TAG');
@@ -19,7 +20,7 @@ var dao = {
 
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS EVENT (id unique, name, startDate, endDate, hashtag, logo, tags, lastUpdate, description, location, location_description)');
 
-         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TALK_FAVORITE (id unique, name, startDate, endDate, event_id, track_id, description, hashtag, speakers, tags, roomName)');
+         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TALK_FAVORITE (id unique, event_id)');
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS EVENT_UPDATE (id unique, currentUpdate)');
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TAG (eventId, name, color)');
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS USER_AGENDA (talk_id, track_name, color)');
@@ -85,7 +86,7 @@ var dao = {
     updateEventData: function(tx, eventJson) {
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TRACK (id unique, name, event_id)');
          dao.execute(tx, 'CREATE TABLE IF NOT EXISTS SPEAKER (id unique, talk_id, event_id, name, twitter, bio, photo, position, tags)');
-         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TALK (id unique, name, startDate, minutes, event_id, track_id, description, hashtag, tags, roomName, maxAtendees)');
+         dao.execute(tx, 'CREATE TABLE IF NOT EXISTS TALK (id unique, name, startDate, minutes, event_id, track_id, description, hashtag, tags, roomName, maxAtendees, favorite)');
 
          dao.execute(tx, 'DELETE FROM TRACK WHERE event_id="'+eventJson.id+'"');
          dao.execute(tx, 'DELETE FROM SPEAKER WHERE event_id="'+eventJson.id+'"');
@@ -192,6 +193,18 @@ var dao = {
         });
     },
 
+    listFavoriteTalks: function(eventId, querySuccess){
+        dao.db.readTransaction(function (t) {
+            t.executeSql('SELECT * FROM TALK_FAVORITE WHERE EVENT_ID="'+eventId+'"',
+                [],
+                function(tx, results){
+                    dao.querySuccess(results, querySuccess);
+                },
+                dao.errorCB
+            );
+        });
+    },
+
     listTalksByTrack: function(eventId, trackId, querySuccess){
         dao.db.readTransaction(function (t) {
             t.executeSql('SELECT * FROM TALK WHERE EVENT_ID="'+eventId+'" and TRACK_ID="'+trackId+'"',
@@ -283,5 +296,17 @@ var dao = {
             }
         }
         return {};
+    },
+
+    setTalkAsFavorite: function(talkId, eventId, favorite){
+         dao.db.transaction(
+            function(tx) {
+                if (favorite) {
+                    dao.execute(tx, 'INSERT INTO TALK_FAVORITE(id, event_id) VALUES("'+talkId+'", "'+eventId+'")');
+                } else {
+                    dao.execute(tx, 'DELETE FROM TALK_FAVORITE  WHERE id="'+talkId+'" AND event_id="'+eventId+'"');
+                }
+            }
+        );
     }
 };
